@@ -39,7 +39,7 @@ const Home = () => {
       className="theme-pluto flex flex-col w-full h-full"
     >
       <div className="relative flex flex-col h-[100dvh] items-center gap-3 overflow-y-auto overflow-x-hidden text-gray-100 select-none scrollbar-none">
-        <div className="max-w-[450px] w-full bg-[#F7F8FE] h-auto flex flex-col gap-2 items-center">
+        <div className="max-w-[450px] w-full bg-[#F7F8FE] h-auto flex flex-col gap-2 items-center relative">
           <Header timer={timer} transform={transform} />
           <TimeRemainSection timer={timer} />
           <div className="flex items-center justify-between w-full px-4">
@@ -57,6 +57,7 @@ const Home = () => {
             {tab === "my-history" && <MyHistory />}
           </div>
         </div>
+        {showBetSlip && <BetSlip setShowBetSlip={setShowBetSlip} />}
       </div>
       {/* <audio src="https://cdn.mac1j.com/fawk/Music/BlastOff.mp3" loop />
       <audio src="https://cdn.mac1j.com/fawk/Music/cashout.mp3" />
@@ -71,7 +72,6 @@ const Home = () => {
           zIndex: 10,
         }}
       /> */}
-      {showBetSlip && <BetSlip setShowBetSlip={setShowBetSlip} />}
     </div>
   );
 };

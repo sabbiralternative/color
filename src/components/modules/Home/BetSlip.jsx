@@ -4,7 +4,7 @@ const BetSlip = ({ setShowBetSlip }) => {
   };
   return (
     <div
-      className="w-full max-w-[450px]  h-[100dvh] fixed  top-0 left-1/2 -translate-x-1/2 bg-gray-500/30 "
+      className="w-full max-w-[450px]  h-[100dvh] fixed  top-0   bg-gray-500/30 "
       style={{ zIndex: 100 }}
     >
       <div className="relative flex items-end justify-center w-full h-full slide-up">
