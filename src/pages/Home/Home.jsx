@@ -1,4 +1,26 @@
+import { useEffect } from "react";
+import { useState } from "react";
+
 const Home = () => {
+  const [timer, setTimer] = useState(30);
+  const [transform, setTransform] = useState(12);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimer((prev) => {
+        if (prev === 0) {
+          setTransform(12);
+          return 30;
+        }
+        return prev - 1;
+      });
+
+      setTransform((prev) => prev + 12);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div
       style={{ backgroundColor: "#0a0928" }}
@@ -52,14 +74,14 @@ const Home = () => {
                 <div className="absolute border-2 rounded-full inset-2 border-rose-200">
                   <div
                     className="absolute h-full w-full autoAnimate"
-                    style={{ transform: "rotate(60deg)" }}
+                    style={{ transform: `rotate(${transform}deg)` }}
                   >
                     <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-[60%] rounded-full bg-rose-500" />
                   </div>
                 </div>
                 <div className="relative flex flex-col items-center justify-center">
                   <span className="h-6 text-lg font-bold text-rose-500">
-                    25
+                    {timer}
                   </span>
                   <span className="text-[10px] text-rose-400">seconds</span>
                 </div>
@@ -126,8 +148,22 @@ const Home = () => {
                   <span className="px-2 py-1 bg-white rounded-sm">0</span>
                   <span className="px-2 py-1 bg-white rounded-sm">0</span>
                   <span className="p-1 bg-white rounded-sm">:</span>
-                  <span className="px-2 py-1 bg-white rounded-sm">2</span>
-                  <span className="px-2 py-1 bg-white rounded-sm">5</span>
+                  {timer.toString().length > 1 ? (
+                    <span className="px-2 py-1 bg-white rounded-sm">
+                      {timer.toString().split("")[0]}
+                    </span>
+                  ) : (
+                    <span className="px-2 py-1 bg-white rounded-sm">0</span>
+                  )}
+                  {timer.toString().length > 1 ? (
+                    <span className="px-2 py-1 bg-white rounded-sm">
+                      {timer.toString().split("")[1]}
+                    </span>
+                  ) : (
+                    <span className="px-2 py-1 bg-white rounded-sm">
+                      {timer}
+                    </span>
+                  )}
                 </div>
               </div>
               <div className="text-xs font-normal">Round ID : 128398830</div>
