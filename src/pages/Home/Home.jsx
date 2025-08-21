@@ -10,8 +10,11 @@ import BetSlip from "../../components/modules/Home/BetSlip";
 import Odds from "../../components/modules/Home/Odds";
 import TimeRemainSection from "../../components/modules/Home/TimeRemainSection";
 import Header from "../../components/modules/Home/Header";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const { token } = useSelector((state) => state.auth);
+  const errorMessage = sessionStorage.getItem("errorMessage");
   const [showBetSlip, setShowBetSlip] = useState(false);
   const [tab, setTab] = useState("game-history");
   const [timer, setTimer] = useState(30);
@@ -33,7 +36,7 @@ const Home = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return (
+  return token ? (
     <div
       style={{ backgroundColor: "#0a0928" }}
       className="theme-pluto flex flex-col w-full h-full"
@@ -72,6 +75,13 @@ const Home = () => {
           zIndex: 10,
         }}
       /> */}
+    </div>
+  ) : (
+    <div className="error-container">
+      <div className="alert alert-danger text-center m-0 " role="alert">
+        {errorMessage ||
+          "URL parameters are missing or invalid. Key: token | Value"}
+      </div>
     </div>
   );
 };

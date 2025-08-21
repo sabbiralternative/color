@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home/Home";
+import Auth from "../pages/Auth/Auth";
 
 export const router = createBrowserRouter(
   [
@@ -15,6 +16,10 @@ export const router = createBrowserRouter(
         {
           index: true,
           element: <Home />,
+        },
+        {
+          path: "/:token",
+          element: <Auth />,
         },
       ],
     },
